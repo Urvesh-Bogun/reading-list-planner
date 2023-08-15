@@ -2,13 +2,11 @@ import java.io.*;
 
 public class BookStore extends ReadingListItemStore {
 
-    public BookStore() 
-    {
+    public BookStore() {
         super();
     }
 
-    public BookStore(String fileName) throws IOException 
-    {
+    public BookStore(String fileName) throws IOException {
         super(fileName);
     }
 
@@ -16,14 +14,12 @@ public class BookStore extends ReadingListItemStore {
     public String getRandomItem(String key) 
     {
         String item = super.getRandomItem(key);
-        if (item == null)
-        {
+        if (item == null) {
             return null;
         } else {
             String[] parts = item.split(" ");
             String titleAuthor = "";
-            for (int i = 0; i < parts.length - 1; i++) 
-            {
+            for (int i = 0; i < parts.length - 1; i++) {
                 titleAuthor += parts[i] + " ";
             }
             int year = Integer.parseInt(parts[parts.length - 1]);
