@@ -1,56 +1,60 @@
 import java.util.*;
 import java.io.*;
 
-public class ReadingListItemStore  {
-    private Map<String, List<String>> map;
+public class ReadingListItemStore {
+    private HashMap<String, List<String>> map;
     
-    //Initialises Map
     public ReadingListItemStore() {
-        this.map = new HashMap<>();
+        map = new HashMap<String, List<String>>();
     }
-    
-    //Loads a list of items from a file and inserts it into a map
+
     public ReadingListItemStore(String filename) throws IOException {
         this();
-        BufferedReader reader = new BufferedReader(new FileReader(filename));
+
+        BufferedReader br = null;
         try {
+            br = new BufferedReader(new FileReader(filename));
             String line;
-            while ((line = reader.readLine()) != null) {
-                String item = line.toLowerCase();
-                String key = item.substring(0, 1).toUpperCase();
-                this.put(key, item);
+            while ((line = br.readLine()) != null) {
+                line = line.toLowerCase();
+                String firstChar = line.substring(0, 1);
+                put(firstChar, line);
             }
         } finally {
-            reader.close();
+            try {
+                br.close();
+            } catch (IOException e) {
+                System.out.print(e.getMessage());
+            }
         }
     }
-    
-    //Boolean to check if Map contains 'key'
-    public boolean containsKey(String key) {
-        return this.map.containsKey(key.toUpperCase());
+
+    public boolean containsKey(String key) { 
+        return (map.containsKey(key));
     }
-    
-    //Creates a new mapping from key to item
+
     public void put(String key, String item) {
-        key = key.toUpperCase();
-        List<String> items = this.map.getOrDefault(key, new ArrayList<>());
-        if (!items.contains(item)) {
-            items.add(item);
-            this.map.put(key, items);
+        if (map.containsKey(key)) {
+            List<String> itemList = map.get(key);
+            itemList.add(item);
+        } else {
+            List<String> itemList = new ArrayList<String>();
+            itemList.add(item);
+            map.put(key, itemList);
         }
     }
-    
-    //Looks up key and returns a random item the key is mapped to
-    public String getRandomItem(String key) {
-        key = key.toUpperCase();
-        List<String> items = this.map.get(key);
-        if (items == null) {
+
+    public String getRandom(String key) {
+        key = key.toLowerCase();
+        if (map.containsKey(key)) {
+            List<String> itemList = map.get(key);
+            Random rand = new Random();
+            int randIndex = rand.nextInt(itemList.size());
+            String randItem = itemList.get(randIndex);
+            return randItem;
+        }
+        else {
             return null;
         }
-        Random rand = new Random();
-        String item = items.get(rand.nextInt(items.size()));
-        return item.substring(0, 1).toUpperCase() + item.substring(1);
     }
 }
-
-
