@@ -9,12 +9,14 @@ public class ReadingListItemStoreTest {
         store.put("be", "Beryl Bainbridge");
         store.put("a", "Anne Brontë");
 
+        //Capital input check
         System.out.println(store.getRandom("A"));
         System.out.println(store.getRandom("a"));
 
         try {
             ReadingListItemStore bookStore = new ReadingListItemStore("Books.txt");
-            
+
+            //Testing if bookStore works with getRandom
             System.out.println(bookStore.getRandom("C"));
             System.out.println(bookStore.getRandom("a"));
             System.out.println(bookStore.getRandom("t"));
@@ -22,6 +24,7 @@ public class ReadingListItemStoreTest {
 
             ReadingListItemStore prizeWinnerStore = new ReadingListItemStore("prize-winners.txt");
 
+            //Testing if PrizeWinnerStore works with getRandom()
             System.out.println(prizeWinnerStore.getRandom("B"));
             System.out.println(prizeWinnerStore.getRandom("l"));
             System.out.println(prizeWinnerStore.getRandom("a"));

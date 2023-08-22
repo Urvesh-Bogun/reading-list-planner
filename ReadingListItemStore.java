@@ -4,6 +4,7 @@ import java.io.*;
 public class ReadingListItemStore {
     private HashMap<String, List<String>> map;
     
+    //Initialises new HashMap
     public ReadingListItemStore() {
         map = new HashMap<String, List<String>>();
     }
@@ -29,10 +30,12 @@ public class ReadingListItemStore {
         }
     }
 
+    //Checks weather map contains a key given string as a key
     public boolean containsKey(String key) { 
         return (map.containsKey(key));
     }
 
+    //Creates new mapping from 'key' to 'item'
     public void put(String key, String item) {
         if (map.containsKey(key)) {
             List<String> itemList = map.get(key);
@@ -44,6 +47,7 @@ public class ReadingListItemStore {
         }
     }
 
+    //Looks up 'key' and returns random item
     public String getRandom(String key) {
         key = key.toLowerCase();
         if (map.containsKey(key)) {
