@@ -12,6 +12,7 @@ public class ReadingListItemStoreTest {
         //Capital input check
         System.out.println(store.getRandom("A"));
         System.out.println(store.getRandom("a"));
+        System.out.println("");
 
         try {
             ReadingListItemStore bookStore = new ReadingListItemStore("Books.txt");
@@ -21,6 +22,7 @@ public class ReadingListItemStoreTest {
             System.out.println(bookStore.getRandom("a"));
             System.out.println(bookStore.getRandom("t"));
             System.out.println(bookStore.getRandom("e"));
+            System.out.println("");
 
             ReadingListItemStore prizeWinnerStore = new ReadingListItemStore("prize-winners.txt");
 

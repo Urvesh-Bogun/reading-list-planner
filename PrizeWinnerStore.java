@@ -1,6 +1,11 @@
 import java.io.*;
 
 public class PrizeWinnerStore extends ReadingListItemStore{
+
+    public PrizeWinnerStore() 
+    {
+        super();
+    }
     
     public PrizeWinnerStore(String filename) throws IOException {
         super(filename);
